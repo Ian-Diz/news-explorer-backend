@@ -51,8 +51,9 @@ module.exports.validateUserInfo = celebrate({
       "string.empty": 'The "email" field must be filled in',
       "string.email": 'The "email" field must be a valid email address',
     }),
-    password: Joi.string().required().messages({
+    password: Joi.string().required().min(8).messages({
       "string.empty": 'The "password" field must be filled in',
+      "string.min": 'The minimum length of the "name" field is 8',
     }),
     name: Joi.string().required().min(2).max(30).messages({
       "string.min": 'The minimum length of the "name" field is 2',
@@ -76,7 +77,7 @@ module.exports.validateUserLogin = celebrate({
 
 module.exports.validateIds = celebrate({
   params: Joi.object().keys({
-    itemId: Joi.string().hex().length(24).messages({
+    articleId: Joi.string().hex().length(24).messages({
       "string.hex": "'_id' does not use hexadecimal values",
       "string.length": "'_id' length is not equal to 24",
     }),

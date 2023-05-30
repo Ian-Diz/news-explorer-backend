@@ -9,9 +9,9 @@ const routes = require("./routes/index");
 const errorHandler = require("./middlewares/error-handler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
-mongoose.connect("mongodb://localhost:27017/wtwr_db");
+mongoose.connect("mongodb://localhost:27017");
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 
 const app = express();
 

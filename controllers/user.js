@@ -12,12 +12,6 @@ const NotFoundError = require("../errors/NotFoundError");
 const ConflictError = require("../errors/ConflictError");
 const BadRequestError = require("../errors/BadRequestError");
 
-module.exports.getUsers = (req, res, next) => {
-  User.find({})
-    .then((users) => res.send(users))
-    .catch(next);
-};
-
 module.exports.createUser = (req, res, next) => {
   const { name, avatar, email, password } = req.body;
 
@@ -61,21 +55,4 @@ module.exports.getCurrentUser = (req, res, next) => {
     })
     .then((user) => res.send({ data: user }))
     .catch(next);
-};
-
-module.exports.updateUser = (req, res, next) => {
-  const { name, avatar } = req.body;
-
-  User.findByIdAndUpdate(req.user._id, { name, avatar })
-    .orFail(() => {
-      throw new NotFoundError("User with this ID does not exist");
-    })
-    .then((user) => res.send(user))
-    .catch((err) => {
-      if (err.name === "ValidationError") {
-        next(new BadRequestError("Data provided is invalid"));
-      } else {
-        next(err);
-      }
-    });
 };

@@ -4,7 +4,7 @@ const ForbiddenError = require("../errors/ForbiddenError");
 const BadRequestError = require("../errors/BadRequestError");
 
 module.exports.getArticles = (req, res, next) => {
-  Article.find({})
+  Article.find({ owner: req.user._id })
     .then((articles) => res.send(articles))
     .catch(next);
 };
@@ -35,8 +35,8 @@ module.exports.removeArticle = (req, res, next) => {
       throw new NotFoundError("Article with this ID does not exist");
     })
     .then((article) => {
-      if (String(item.owner) !== owner) {
-        next(
+      if (String(article.owner) !== owner) {
+        return next(
           new ForbiddenError(
             "You do not have permission to remove this resource"
           )
