@@ -17,7 +17,7 @@ router.post("/signin", validateUserLogin, login);
 
 router.post("/signup", validateUserInfo, createUser);
 
-router.use(auth, () => {
+router.use(() => {
   throw new NotFoundError("This route does not exist");
 });
 
