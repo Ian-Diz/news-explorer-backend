@@ -10,7 +10,7 @@ const errorHandler = require("./middlewares/error-handler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const { REACT_APP_MONGOOSE } = process.env;
 
-mongoose.connect(REACT_APP_MONGOOSE);
+mongoose.connect(`${REACT_APP_MONGOOSE}`);
 
 const { PORT = 3000 } = process.env;
 
