@@ -30,11 +30,11 @@ app.use(requestLogger);
 
 app.use(limiter);
 
-app.get("/crash-test", () => {
+/*app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Server will crash now");
   }, 0);
-});
+});*/
 
 app.use(routes);
 
