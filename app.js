@@ -8,8 +8,9 @@ const { limiter } = require("./utils/config");
 const routes = require("./routes/index");
 const errorHandler = require("./middlewares/error-handler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+const { REACT_APP_MONGOOSE } = process.env;
 
-mongoose.connect("mongodb://localhost:27017");
+mongoose.connect(REACT_APP_MONGOOSE);
 
 const { PORT = 3000 } = process.env;
 
@@ -30,11 +31,11 @@ app.use(requestLogger);
 
 app.use(limiter);
 
-/*app.get("/crash-test", () => {
+app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Server will crash now");
   }, 0);
-});*/
+});
 
 app.use(routes);
 
