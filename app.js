@@ -9,7 +9,10 @@ const routes = require("./routes/index");
 const errorHandler = require("./middlewares/error-handler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
-mongoose.connect("mongodb://localhost:27017/article_db");
+mongoose
+  .connect("mongodb://localhost:27017/article_db")
+  .then(() => console.log("mongodb is connected"))
+  .catch((e) => console.log(e));
 
 const { PORT = 3000 } = process.env;
 
