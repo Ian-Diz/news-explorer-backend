@@ -8,9 +8,8 @@ const { limiter } = require("./utils/config");
 const routes = require("./routes/index");
 const errorHandler = require("./middlewares/error-handler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-const { REACT_APP_MONGOOSE } = process.env;
 
-mongoose.connect(`${REACT_APP_MONGOOSE}`);
+mongoose.connect("mongodb://localhost:27017/article_db");
 
 const { PORT = 3000 } = process.env;
 
