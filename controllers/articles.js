@@ -16,7 +16,7 @@ module.exports.addArticle = (req, res, next) => {
   Article.create({ keyword, title, text, date, source, link, image, owner })
     .then((article) => {
       res.status(201);
-      res.send({ data: article });
+      res.send(article);
     })
     .catch((err) => {
       if (err.name === "ValidationError") {
