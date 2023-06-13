@@ -31,7 +31,7 @@ app.use(helmet());
 
 app.use(requestLogger);
 
-app.use(limiter);
+//app.use(limiter);
 
 /*app.get("/crash-test", () => {
   setTimeout(() => {
